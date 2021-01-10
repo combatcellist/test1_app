@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'welcome#index'
+  
+  devise_for :post_readers, controllers: {
+    sessions: 'post_readers/sessions',
+    passwords: 'post_readers/passwords',
+    registrations: 'post_readers/registrations'
+  }
+
+  devise_for :post_writers, controllers: {
+    sessions: 'post_writers/sessions',
+    passwords: 'post_writers/passwords',
+    registrations: 'post_writers/registrations'
+  }
+  
 end
