@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
-
+  before_action :authenticate_post_reader!, except: [:index]
   before_action :find_post, only: [:show, :edit, :update, :destroy]
   
   def index
     @posts = Post.all
     @comment = Comment.new
-    
+    @comments = @post.comments.includes(:post_reader, :post_writer)
   end
 
   def show

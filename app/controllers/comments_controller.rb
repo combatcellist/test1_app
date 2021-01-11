@@ -1,11 +1,16 @@
 class CommentsController < ApplicationController
+
+  def new
+    @comments = Comments.all
+    @comment = Comment.neew
+  end
+
   def create
+    @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to root_path, notice: "コメントしました"
-    else
-      @comments = @post.comments.includes(:user)
-      render "/"
+      ActionCable.server.broadcast 'comment_channel', text: @comment
+    end
     end
   end
 

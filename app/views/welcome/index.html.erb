@@ -9,24 +9,26 @@
         <div class="profile">
          <div class="name-history">
             <div class="name">
-              だーーん
+              洋食屋熊谷
             </div>
             <div class="learning-history">
-              学習歴: 半年
+              コロナに負けず新作を試作中！！
             </div>
          </div>
           <div class="purpose">
-           エンジニアになるため
+           お店住所: 神奈川県藤沢市本町2-2-2
           </div>
         </div>
      </div>
 
     <div class="text">
      <p><%= post.content %></p>
+     <%= link_to post_path(post.id) do %>
      <% if post.images.attached? %>
         <%  post.images.each do |image| %>
           <%= image_tag image %>
         <% end %>
+     <% end %>
      <% end %>
     </div>
 
@@ -40,14 +42,16 @@
             <%= comment.text %>
           <% end %>
        <% end %>
-       <%# <%= link_to "コメントする", post_comments_path(@post) model: @comment %>
+
+       <%= form_with model: @comment do |f| %>
+        <%= f.text_field :text %>
+        <%= f.submit 'コメントする' %>
+       <% end %>
+      
+
       </div>
     </div>
    </div>
    <% end %>
-  </div>
-  <div class="sidebar">
-   <div class="box"></div>
-   <div class="box"></div>
   </div>
 </div>

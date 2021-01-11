@@ -16,14 +16,17 @@
           <%= link_to "ログアウト", destroy_post_reader_session_path, method: :delete %>
         </li>
     <% else %>
-        <li>
+        <li >
           <%= link_to "お店登録", new_post_writer_registration_path %>
+        </li>
+        <li>
+          <%= link_to "お店ログイン", new_post_writer_session_path %>
         </li>
         <li>
           <%= link_to "会員登録", new_post_reader_registration_path %>
         </li>
         <li>
-          <%= link_to "ログイン", new_post_writer_session_path %>
+          <%= link_to "会員ログイン", new_post_reader_session_path %>
         </li>
     <% end %>
     </ul>
