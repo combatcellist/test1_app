@@ -35,7 +35,12 @@
       
       </div>
       <div class="comment">
-       コメント
+       <% if @comments %>
+          <% @comments.each do |comment| %>
+            <%= comment.text %>
+          <% end %>
+       <% end %>
+       <%# <%= link_to "コメントする", post_comments_path(@post) model: @comment %>
       </div>
     </div>
    </div>
