@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :posts
   root 'welcome#index'
   
   devise_for :post_readers, controllers: {
@@ -13,5 +12,9 @@ Rails.application.routes.draw do
     passwords: 'post_writers/passwords',
     registrations: 'post_writers/registrations'
   }
+
+  resources :posts do
+    resources :comments, only: [:create]
+  end
   
 end
