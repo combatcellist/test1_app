@@ -5,4 +5,9 @@ class PostReader < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :comments
+         has_many :favorites, dependent: :destroy
+
+         def already_favorited?(post)
+          self.favorites.exists?(post_id: post.id)
+         end
 end

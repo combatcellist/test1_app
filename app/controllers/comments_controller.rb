@@ -2,16 +2,16 @@ class CommentsController < ApplicationController
 
   def new
     @comments = Comments.all
-    @comment = Comment.neew
+    @comment = Comment.new
   end
 
   def create
     @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
-    if @comment.save
-      ActionCable.server.broadcast 'comment_channel', text: @comment
-    end
-    end
+    # if @comment.save
+      # redirect_to root_path
+      # ActionCable.server.broadcast 'comment_channel', text: @comment
+    # end
   end
 
   private
