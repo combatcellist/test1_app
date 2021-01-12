@@ -34,7 +34,12 @@
 
    <div class="action-menu">
       <div class="like">
-      
+       <% if current_post_reader.already_favorited?(post) %>
+        <%= link_to 'いいねを外す', post_favorite_path(post), method: :delete %>
+        <% else %>
+        <%= link_to 'いいね', post_favorites_path(post), method: :post %>
+       <% end %>
+       <%# <%= post.favorites.count %>
       </div>
       <div class="comment">
        <% if @comments %>
@@ -43,13 +48,14 @@
           <% end %>
        <% end %>
 
-       <%= form_with model: @comment do |f| %>
+       <% if post_reader_signed_in? || post_writer_signed_in? %>
+       <%= form_with model: @comment, method: :post, local: true do |f| %>
         <%= f.text_field :text %>
         <%= f.submit 'コメントする' %>
        <% end %>
-      
-
       </div>
+      <% end %>
+    
     </div>
    </div>
    <% end %>

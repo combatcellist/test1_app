@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     @comment = Comment.new
     @comments = @post.comments.includes(:post_reader, :post_writer)
+    @favorites = Favorite.new
   end
 
   def show
